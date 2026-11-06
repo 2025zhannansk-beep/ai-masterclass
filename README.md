@@ -1,2 +1,5 @@
-# ai-masterclass
-Материалы мастер-класса «Бизнес под контролем» — AI-студия Жанны Булгаковой
+# AI-студия Жанны Булгаковой
+
+Статический сайт. GitHub Pages: ветка main, папка / (root).
+
+Планируемый адрес: https://2025zhannansk-beep.github.io/ai-masterclass/
