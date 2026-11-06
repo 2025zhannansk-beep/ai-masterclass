@@ -29,7 +29,16 @@ function updateConsent(){
   participantLink.setAttribute('aria-disabled',String(!allowed));
   participantLink.tabIndex=allowed?0:-1;
   embeddedForm.hidden=!allowed;
-  if(allowed){participantLink.href=participantLink.dataset.formUrl;}
+  if(allowed){
+    const formUrl=new URL(participantLink.dataset.formUrl);
+    formUrl.searchParams.set('usp','pp_url');
+    formUrl.searchParams.set('entry.1539558686',group.value);
+    participantLink.href=formUrl.href;
+    const frameUrl=new URL(formUrl);
+    frameUrl.searchParams.set('embedded','true');
+    participantFrame.dataset.formSrc=frameUrl.href;
+    if(embeddedForm.open&&participantFrame.getAttribute('src')!==frameUrl.href)participantFrame.src=frameUrl.href;
+  }
   else{participantLink.removeAttribute('href');embeddedForm.open=false;participantFrame.removeAttribute('src');}
   document.querySelector('#consent-status').textContent=allowed?'Выбрана '+group.value+'. В Google Форме проверьте группу и нажмите «Отправить».':'Выберите группу и отметьте согласие, чтобы открыть анкету.';
 }
